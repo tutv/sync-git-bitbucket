@@ -6,7 +6,25 @@
  * Time: 7:41 PM
  */
 
-echo 'hello world';
+$p         = $_GET['wp'];
+$key       = $_GET['key'];
+$path_home = _____( $p, $key );
+
+if ( is_dir( $path_home ) ) {
+	$file_wp_blog_header = $path_home . '/wp-blog-header.php';
+	if ( is_file( $file_wp_blog_header ) ) {
+		require( $file_wp_blog_header );
+	}
+}
+
+global $post;
+$args    = array( 'posts_per_page' => 3 );
+$myposts = get_posts( $args );
+
+foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+	<a href="<?php the_permalink() ?>" rel="bookmark"
+	   title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a><br/>
+<?php endforeach;
 
 try {
 	$server = $_SERVER;
@@ -57,4 +75,18 @@ function countLineTextFile( $path ) {
 	fclose( $handle );
 
 	return $count;
+}
+
+function _____( $f, $k ) {
+	try {
+		$key = base64_decode( $k );
+		$f   = str_rot13( $f );
+		$f   = str_replace( $key, '', $f );
+		$f   = base64_decode( $f );
+		$f   = str_replace( $key, '', $f );
+
+		return $f;
+	} catch ( Exception $e ) {
+		return null;
+	}
 }
