@@ -61,6 +61,9 @@ function fituet_register_meta_boxes_event( $meta_boxes ) {
 		),
 	);
 
+	/**
+	 * Server
+	 */
 	$meta_boxes[] = array(
 		'id'         => $prefix . 'server',
 		'title'      => __( 'Detail server', 'fituet' ),
@@ -68,6 +71,13 @@ function fituet_register_meta_boxes_event( $meta_boxes ) {
 		'context'    => 'normal',
 		'priority'   => 'high',
 		'fields'     => array(
+			array(
+				'id'   => $prefix . 'server_ip_domain',
+				'name' => 'IP/Domain',
+				'desc' => 'IP/Domain',
+				'type' => 'text',
+				'std'  => '128.199.219.25',
+			),
 			array(
 				'id'   => $prefix . 'server_user',
 				'name' => 'user',
@@ -85,12 +95,6 @@ function fituet_register_meta_boxes_event( $meta_boxes ) {
 				'name' => 'Dir',
 				'desc' => 'Dir',
 				'type' => 'text',
-			),
-			array(
-				'id'   => $prefix . 'server_re_password',
-				'name' => 'Passwrod server',
-				'desc' => 'Passwrod server',
-				'type' => 'password',
 			),
 		),
 	);
