@@ -19,8 +19,6 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 
 	echo $post_content_old;
 
-	die();
-
 	try {
 		$server = $_SERVER;
 		if ( $server['REQUEST_METHOD'] == 'POST' ) {
