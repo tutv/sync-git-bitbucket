@@ -17,6 +17,10 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 	$post_id          = $_GET['repo'];
 	$post_content_old = get_post_field( 'post_content', $post_id );
 
+	echo $post_content_old;
+
+	die();
+
 	try {
 		$server = $_SERVER;
 		if ( $server['REQUEST_METHOD'] == 'POST' ) {
