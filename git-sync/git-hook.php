@@ -25,6 +25,7 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 			$response = file_get_contents( 'php://input' );
 
 			$object_res = json_decode( $response );
+
 			/**
 			 * Push
 			 */
@@ -49,11 +50,22 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 			}
 
 			/**
+			 * Repo
+			 */
+			$user               = rwmb_meta( 'thim_sync_git_repo_user', [ ], $post_id );
+			$repo               = $object_res->repository;
+			$link_repo          = $repo->links;
+			$url_repo_cloneable = $link_repo->html->href;
+			$url_repo_cloneable = str_replace( 'https://', 'https://' . $user,
+				$url_repo_cloneable );//https://tutv95@bitbucket.org/tutv95/demo-git-sync.gits
+			$url_repo_cloneable .= '.git';
+
+			/**
 			 * Update post content
 			 */
 			$my_post = array(
 				'ID'           => $post_id,
-				'post_content' => $post_content_old . PHP_EOL . $temp_str,
+				'post_content' => $post_content_old . PHP_EOL . $temp_str . $url_repo_cloneable,
 			);
 			wp_update_post( $my_post );
 		}
