@@ -22,7 +22,7 @@ function fituet_register_meta_boxes_event( $meta_boxes ) {
 			array(
 				'id'         => $prefix . 'url_git_hook',
 				'name'       => 'URL',
-				'desc'       => 'URL Web hook',
+				'desc'       => 'Copy & paste to <strong>Webhooks</strong>',
 				'type'       => 'textarea',
 				'attributes' => array(
 					'readonly' => true,
