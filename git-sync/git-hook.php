@@ -34,10 +34,26 @@ try {
 		}
 	}
 
-	$temp_str .= PHP_EOL;
+	$path_log_txt = 'ok.txt';
 
-
-	file_put_contents( 'ok.txt', $temp_str );
+	if ( countLineTextFile( $path_log_txt ) > 1000 ) {
+		file_put_contents( $path_log_txt, PHP_EOL . sprintf( $temp_str ), FILE_TEXT );
+	} else {
+		file_put_contents( $path_log_txt, PHP_EOL . sprintf( $temp_str ), FILE_APPEND );
+	}
 } catch ( Exception $e ) {
-	file_put_contents( 'ok.txt', $e->getMessage() );
+	file_put_contents( $path_log_txt, PHP_EOL . sprintf( $e->getMessage() ), FILE_APPEND );
+}
+
+function countLineTextFile( $path ) {
+	$count  = 0;
+	$handle = fopen( $path, 'r' );
+	while ( ! feof( $handle ) ) {
+		$line = fgets( $handle );
+		$count ++;
+	}
+
+	fclose( $handle );
+
+	return $count;
 }
