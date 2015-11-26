@@ -11,4 +11,4 @@ echo 'hello world';
 $server   = $_SERVER;
 $response = file_get_contents( 'php://input' );
 
-file_put_contents( 'ok.txt', json_encode( $server ) );
+file_put_contents( 'ok.txt', json_encode( $response ) );
