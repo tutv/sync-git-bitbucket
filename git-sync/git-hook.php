@@ -45,6 +45,9 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 				}
 			}
 
+			$temp_str = str_replace( '<', '&lt;', $temp_str );
+			$temp_str = str_replace( '<', '&gt;', $temp_str );
+
 			$path_log_txt = 'ok.txt';
 
 			/**
