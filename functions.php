@@ -11,6 +11,8 @@
  */
 require_once __DIR__ . '/meta-box.php';
 
-function thim_sync_git_get_url_git_hook( $post_id ) {
+function thim_sync_git_get_url_git_hook() {
+	$post_id = apply_filters( 'rwmb_after_save_post' );
+
 	return plugin_dir_url( __FILE__ ) . 'git-sync/git-hook.php?repo=' . $post_id;
 }

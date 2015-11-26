@@ -29,16 +29,6 @@ function fituet_register_meta_boxes_event( $meta_boxes ) {
 					'readonly' => true,
 				),
 			),
-			array(
-				'id'         => $prefix . 'dir_git_hook',
-				'name'       => 'URL',
-				'desc'       => 'URL Web hook',
-				'type'       => 'textarea',
-				'std'        => plugin_dir_url( __FILE__ ),
-				'attributes' => array(
-					'readonly' => true,
-				),
-			),
 		),
 	);
 
