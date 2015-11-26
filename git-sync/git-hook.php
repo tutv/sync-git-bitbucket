@@ -56,7 +56,7 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 			$repo               = $object_res->repository;
 			$link_repo          = $repo->links;
 			$url_repo_cloneable = $link_repo->html->href;
-			$url_repo_cloneable = str_replace( 'https://', 'https://' . $user,
+			$url_repo_cloneable = str_replace( 'https://', 'https://' . $user . '@',
 				$url_repo_cloneable );//https://tutv95@bitbucket.org/tutv95/demo-git-sync.gits
 			$url_repo_cloneable .= '.git';
 
