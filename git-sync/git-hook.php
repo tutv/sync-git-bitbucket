@@ -33,7 +33,7 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 			$commits = $changes->commits;
 
 			$now      = date_create()->setTimezone( new DateTimeZone( 'Asia/Ho_Chi_Minh' ) )->format( 'H:i:s d/m/Y' );
-			$temp_str = $now . PHP_EOL;
+			$temp_str = '<strong>' . $now . '</strong>' . PHP_EOL;
 			if ( count( $commits ) > 0 ) {
 				foreach ( $commits as $index => $commit ) {
 					$author       = $commit->author;//Object
