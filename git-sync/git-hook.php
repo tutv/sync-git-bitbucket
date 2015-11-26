@@ -6,6 +6,8 @@
  * Time: 7:41 PM
  */
 
+echo 'hello world';
+
 $server   = $_SERVER;
 $response = file_get_contents( 'php://input' );
 
