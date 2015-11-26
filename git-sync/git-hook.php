@@ -20,16 +20,15 @@ try {
 	$changes = $push->changes[0];
 	$commits = $changes->commits;
 
-	$temp_str = '';
+	$now      = date_create()->setTimezone( new DateTimeZone( 'Asia/Ho_Chi_Minh' ) )->format( 'H:i:s d/m/Y' );
+	$temp_str = $now . PHP_EOL;
 	if ( count( $commits ) > 0 ) {
 		foreach ( $commits as $index => $commit ) {
-			$now        = date_create()->setTimezone( new DateTimeZone( 'Asia/Ho_Chi_Minh' ) )->format( 'H:i:s d/m/Y' );
-			$author     = $commit->author;//Object
-			$raw_author = $author->raw;//Tu TV <tutv95@gmail.com>
-			$message    = $commit->message;//demo 02
-			$message    = str_replace( array( "\r\n", "\r", "\n" ), '', $message );//demo 02
-
-			$write_commit = $now . PHP_EOL . $raw_author . ' - "' . $message . '"' . PHP_EOL;
+			$author       = $commit->author;//Object
+			$raw_author   = $author->raw;//Tu TV <tutv95@gmail.com>
+			$message      = $commit->message;//demo 02
+			$message      = str_replace( array( "\r\n", "\r", "\n" ), '', $message );//demo 02
+			$write_commit = $raw_author . ' - "' . $message . '"' . PHP_EOL;
 			$temp_str .= $write_commit;
 		}
 	}
