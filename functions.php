@@ -11,8 +11,12 @@
  */
 require_once __DIR__ . '/meta-box.php';
 
-function thim_sync_git_get_url_git_hook() {
-	$post_id = apply_filters( 'rwmb_after_save_post' );
-
+function thim_sync_git_get_url_git_hook( $post_id ) {
 	return plugin_dir_url( __FILE__ ) . 'git-sync/git-hook.php?repo=' . $post_id;
 }
+
+function thim_thim_sync_git_update_url_git_hook( $post_id ) {
+	update_post_meta( $post_id, 'thim_sync_git_url_git_hook', thim_sync_git_get_url_git_hook( $post_id ) );
+}
+
+add_filter( 'rwmb_after_save_post', 'thim_thim_sync_git_update_url_git_hook' );

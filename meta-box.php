@@ -24,7 +24,6 @@ function fituet_register_meta_boxes_event( $meta_boxes ) {
 				'name'       => 'URL',
 				'desc'       => 'URL Web hook',
 				'type'       => 'textarea',
-				'std'        => thim_sync_git_get_url_git_hook(),
 				'attributes' => array(
 					'readonly' => true,
 				),
