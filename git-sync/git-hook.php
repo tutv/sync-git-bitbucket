@@ -33,20 +33,20 @@ if ( is_dir( $path_home ) && is_file( $file_wp_blog_header ) ) {
 			$commits = $changes->commits;
 
 			$now      = date_create()->setTimezone( new DateTimeZone( 'Asia/Ho_Chi_Minh' ) )->format( 'H:i:s d/m/Y' );
-			$temp_str = $now . PHP_EOL;
+			$temp_str = '<strong>' . $now . '</strong>' . PHP_EOL;
 			if ( count( $commits ) > 0 ) {
 				foreach ( $commits as $index => $commit ) {
-					$author       = $commit->author;//Object
-					$raw_author   = $author->raw;//Tu TV <tutv95@gmail.com>
+					$author     = $commit->author;//Object
+					$raw_author = $author->raw;//Tu TV <tutv95@gmail.com>
+					$raw_author = str_replace( '<', '&lt;', $raw_author );
+					$raw_author = str_replace( '<', '&gt;', $raw_author );
+
 					$message      = $commit->message;//demo 02
 					$message      = str_replace( array( "\r\n", "\r", "\n" ), '', $message );//demo 02
 					$write_commit = $raw_author . ' - "' . $message . '"' . PHP_EOL;
 					$temp_str .= $write_commit;
 				}
 			}
-
-			$temp_str = str_replace( '<', '&lt;', $temp_str );
-			$temp_str = str_replace( '<', '&gt;', $temp_str );
 
 			/**
 			 * Update post content
