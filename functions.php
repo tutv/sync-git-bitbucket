@@ -10,6 +10,7 @@
  * Add meta box
  */
 require_once __DIR__ . '/meta-box.php';
+require_once __DIR__ . '/helpers/functions.php';
 
 function thim_sync_git_get_url_git_hook( $post_id ) {
 	return plugin_dir_url( __FILE__ ) . 'git-sync/git-hook.php?repo=' . $post_id . '&token='
@@ -22,3 +23,11 @@ function thim_thim_sync_git_update_url_git_hook( $post_id ) {
 }
 
 add_filter( 'rwmb_after_save_post', 'thim_thim_sync_git_update_url_git_hook' );
+
+$user = new Bitbucket\API\User();
+$user->getClient()->addListener( new Bitbucket\API\Http\Listener\BasicAuthListener( 'tutv95', 'hhw95mrT0313' ) );
+
+// now you can access protected endpoints as $bb_user
+$response = $user->get();
+
+print_r( $response );
