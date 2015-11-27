@@ -9,4 +9,4 @@
 /**
  * Bitbucket API
  */
-require_once __DIR__ . '/bitbucket-api/vendor/autoload.php';
+require_once __DIR__ . '/bitbucket.php';
